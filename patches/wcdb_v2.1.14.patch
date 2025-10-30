@@ -1,5 +1,29 @@
+diff --git a/WCDB.podspec b/WCDB.podspec
+index 7f11379..7c242da 100644
+--- a/WCDB.podspec
++++ b/WCDB.podspec
+@@ -149,7 +149,6 @@ Pod::Spec.new do |wcdb|
+     "VALID_ARCHS[sdk=watchos*]" => "arm64_32 arm64 86_64",
+     "OTHER_CFLAGS" => "-fvisibility-inlines-hidden",
+     "OTHER_CPLUSPLUSFLAGS" => "-fvisibility-inlines-hidden",
+-    "SWIFT_ENABLE_EXPLICIT_MODULES" => 'NO',
+     "OTHER_SWIFT_FLAGS" => "-no-verify-emitted-module-interface",
+     "SWIFT_ACTIVE_COMPILATION_CONDITIONS" => "WCDB_SWIFT_BRIDGE_OBJC",
+   }
+diff --git a/WCDB.swift.podspec b/WCDB.swift.podspec
+index e6fd23d..5b7e2ee 100644
+--- a/WCDB.swift.podspec
++++ b/WCDB.swift.podspec
+@@ -77,7 +77,6 @@ Pod::Spec.new do |wcdb|
+     "VALID_ARCHS[sdk=watchos*]" => "arm64_32 arm64 x86_64",
+     "OTHER_CFLAGS" => "-fvisibility-inlines-hidden",
+     "OTHER_CPLUSPLUSFLAGS" => "-fvisibility-inlines-hidden",
+-    "SWIFT_ENABLE_EXPLICIT_MODULES" => 'NO',
+     "OTHER_SWIFT_FLAGS" => "-no-verify-emitted-module-interface",
+   }
+   wcdb.swift_versions = '5'
 diff --git a/src/WCDB.xcodeproj/project.pbxproj b/src/WCDB.xcodeproj/project.pbxproj
-index f7e33d9..6b4146a 100644
+index f7e33d9..43971cc 100644
 --- a/src/WCDB.xcodeproj/project.pbxproj
 +++ b/src/WCDB.xcodeproj/project.pbxproj
 @@ -3,7 +3,7 @@
@@ -15,62 +39,71 @@ index f7e33d9..6b4146a 100644
  		39B524DE2304F9A2001DF52D /* InnerHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B524DC2304F9A2001DF52D /* InnerHandle.cpp */; };
  		39C70CC72313E20F002D773C /* Assemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C70CC52313E20E002D773C /* Assemble.cpp */; };
  		39C70CC82313E20F002D773C /* Assemble.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39C70CC62313E20F002D773C /* Assemble.hpp */; };
-+		3C9073EB2EB2FDA50090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
-+		3C9073EC2EB2FDAF0090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
-+		3C9073ED2EB2FDB80090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
-+		3C9073EE2EB2FDC00090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
++		4B6230C62EB37E5800462817 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6230C52EB37E5800462817 /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
++		4B6230C72EB37E6800462817 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6230C52EB37E5800462817 /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
++		4B6230C82EB37E7400462817 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6230C52EB37E5800462817 /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
++		4B6230C92EB37E8200462817 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B6230C52EB37E5800462817 /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
  		750080D92920DCFF009C0F38 /* WCTFileManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2316D93521058B5500707AFC /* WCTFileManager.mm */; };
  		750080DA2920DD1B009C0F38 /* WCTOperationQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 232C6F00229C0A280046742F /* WCTOperationQueue.mm */; };
  		750080E22920E4A1009C0F38 /* WCTFTSTokenizerUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23577F781F74F4E800D31C05 /* WCTFTSTokenizerUtil.mm */; };
-@@ -4785,6 +4789,7 @@
+@@ -4785,6 +4789,8 @@
  		39B524DC2304F9A2001DF52D /* InnerHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InnerHandle.cpp; sourceTree = "<group>"; };
  		39C70CC52313E20E002D773C /* Assemble.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Assemble.cpp; sourceTree = "<group>"; };
  		39C70CC62313E20F002D773C /* Assemble.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Assemble.hpp; sourceTree = "<group>"; };
-+		3C9073EA2EB2FDA50090488A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
++		3C9A56DF2EB44A8400DA1C6E /* WCDBSwift.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = WCDBSwift.xcconfig; sourceTree = "<group>"; };
++		4B6230C52EB37E5800462817 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
  		7500829229223463009C0F38 /* WCTBridgeMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTBridgeMacro.h; sourceTree = "<group>"; };
  		75067CBD293F8192005DA25B /* AutoAddColumnObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AutoAddColumnObject.mm; sourceTree = "<group>"; };
  		75067CBF293F819B005DA25B /* AutoAddColumnObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoAddColumnObject.h; sourceTree = "<group>"; };
-@@ -5130,6 +5135,7 @@
+@@ -5130,6 +5136,7 @@
  				037C3A822897E33600328EC8 /* Foundation.framework in Frameworks */,
  				037C3A832897E33600328EC8 /* libz.tbd in Frameworks */,
  				037C3A842897E33600328EC8 /* sqlcipher.framework in Frameworks */,
-+				3C9073EC2EB2FDAF0090488A /* UIKit.framework in Frameworks */,
++				4B6230C82EB37E7400462817 /* UIKit.framework in Frameworks */,
  			);
  			runOnlyForDeploymentPostprocessing = 0;
  		};
-@@ -5173,6 +5179,7 @@
+@@ -5173,6 +5180,7 @@
  				2366BB21221BC0D2000ED712 /* Foundation.framework in Frameworks */,
  				23F5BE132088800C000CCD37 /* libz.tbd in Frameworks */,
  				23F5BE1120888008000CCD37 /* sqlcipher.framework in Frameworks */,
-+				3C9073EE2EB2FDC00090488A /* UIKit.framework in Frameworks */,
++				4B6230C62EB37E5800462817 /* UIKit.framework in Frameworks */,
  			);
  			runOnlyForDeploymentPostprocessing = 0;
  		};
-@@ -5191,6 +5198,7 @@
+@@ -5191,6 +5199,7 @@
  				7521D88F291E9ABB009642EF /* Foundation.framework in Frameworks */,
  				7521D890291E9ABB009642EF /* libz.tbd in Frameworks */,
  				7521D891291E9ABB009642EF /* sqlcipher.framework in Frameworks */,
-+				3C9073ED2EB2FDB80090488A /* UIKit.framework in Frameworks */,
++				4B6230C72EB37E6800462817 /* UIKit.framework in Frameworks */,
  			);
  			runOnlyForDeploymentPostprocessing = 0;
  		};
-@@ -5202,6 +5210,7 @@
+@@ -5202,6 +5211,7 @@
  				7521DC25291EA349009642EF /* Foundation.framework in Frameworks */,
  				7521DC26291EA349009642EF /* libz.tbd in Frameworks */,
  				7521DC27291EA349009642EF /* sqlcipher.framework in Frameworks */,
-+				3C9073EB2EB2FDA50090488A /* UIKit.framework in Frameworks */,
++				4B6230C92EB37E8200462817 /* UIKit.framework in Frameworks */,
  			);
  			runOnlyForDeploymentPostprocessing = 0;
  		};
-@@ -7124,6 +7133,7 @@
+@@ -7124,6 +7134,7 @@
  		23B5F93E1E111CB100E58396 /* Frameworks */ = {
  			isa = PBXGroup;
  			children = (
-+				3C9073EA2EB2FDA50090488A /* UIKit.framework */,
++				4B6230C52EB37E5800462817 /* UIKit.framework */,
  				2387D8A621DF0B190028ADB9 /* XCTest.framework */,
  				239E8A922160A81600BCB308 /* Foundation.framework */,
  				23F0FD7C215F1C92008399FB /* Security.framework */,
-@@ -12005,6 +12015,13 @@
+@@ -7469,6 +7480,7 @@
+ 				234F0369227A9E3C00DD65A2 /* Info.plist */,
+ 				234F0370227A9E3D00DD65A2 /* WCDBWithoutCompression.xcconfig */,
+ 				0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */,
++				3C9A56DF2EB44A8400DA1C6E /* WCDBSwift.xcconfig */,
+ 				234F036E227A9E3D00DD65A2 /* WCDB.modulemap */,
+ 				7521DA49291E9D9E009642EF /* WCDBCpp.modulemap */,
+ 				7521DA4A291E9D9E009642EF /* WCDBObjc.modulemap */,
+@@ -12005,6 +12017,13 @@
  			isa = XCBuildConfiguration;
  			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
  			buildSettings = {
@@ -84,7 +117,7 @@ index f7e33d9..6b4146a 100644
  			};
  			name = Debug;
  		};
-@@ -12012,6 +12029,13 @@
+@@ -12012,6 +12031,13 @@
  			isa = XCBuildConfiguration;
  			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
  			buildSettings = {
@@ -98,7 +131,7 @@ index f7e33d9..6b4146a 100644
  			};
  			name = Release;
  		};
-@@ -12093,6 +12117,10 @@
+@@ -12093,6 +12119,10 @@
  			isa = XCBuildConfiguration;
  			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
  			buildSettings = {
@@ -109,7 +142,7 @@ index f7e33d9..6b4146a 100644
  				GCC_PREPROCESSOR_DEFINITIONS = (
  					"$(inherited)",
  					"$(WCDB_VERSION_DEFINITIONS)",
-@@ -12103,7 +12131,10 @@
+@@ -12103,7 +12133,10 @@
  					"WCDB_TESTS=1",
  				);
  				MODULEMAP_FILE = "$(SRCROOT)/support/WCDB.modulemap";
@@ -120,7 +153,7 @@ index f7e33d9..6b4146a 100644
  			};
  			name = Debug;
  		};
-@@ -12111,6 +12142,10 @@
+@@ -12111,6 +12144,10 @@
  			isa = XCBuildConfiguration;
  			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
  			buildSettings = {
@@ -131,7 +164,7 @@ index f7e33d9..6b4146a 100644
  				GCC_PREPROCESSOR_DEFINITIONS = (
  					"$(inherited)",
  					"$(WCDB_VERSION_DEFINITIONS)",
-@@ -12120,7 +12155,10 @@
+@@ -12120,7 +12157,10 @@
  					"WCDB_SWIFT_BRIDGE_OBJC=1",
  				);
  				MODULEMAP_FILE = "$(SRCROOT)/support/WCDB.modulemap";
@@ -142,7 +175,7 @@ index f7e33d9..6b4146a 100644
  			};
  			name = Release;
  		};
-@@ -12182,7 +12220,14 @@
+@@ -12182,7 +12222,14 @@
  			isa = XCBuildConfiguration;
  			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
  			buildSettings = {
@@ -157,7 +190,7 @@ index f7e33d9..6b4146a 100644
  			};
  			name = Debug;
  		};
-@@ -12190,7 +12235,14 @@
+@@ -12190,23 +12237,46 @@
  			isa = XCBuildConfiguration;
  			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
  			buildSettings = {
@@ -172,9 +205,10 @@ index f7e33d9..6b4146a 100644
  			};
  			name = Release;
  		};
-@@ -12198,7 +12250,14 @@
+ 		7521DDDB291EA349009642EF /* Debug */ = {
  			isa = XCBuildConfiguration;
- 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+-			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
++			baseConfigurationReference = 3C9A56DF2EB44A8400DA1C6E /* WCDBSwift.xcconfig */;
  			buildSettings = {
 +				FRAMEWORK_SEARCH_PATHS = (
 +					"$(inherited)",
@@ -183,13 +217,15 @@ index f7e33d9..6b4146a 100644
  				MODULEMAP_FILE = "$(SRCROOT)/support/WCDBSwift.modulemap";
 +				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
 +				SUPPORTS_MACCATALYST = YES;
++				SWIFT_ENABLE_EXPLICIT_MODULES = YES;
 +				TARGETED_DEVICE_FAMILY = "1,2,3,4";
  			};
  			name = Debug;
  		};
-@@ -12206,7 +12265,14 @@
+ 		7521DDDC291EA349009642EF /* Release */ = {
  			isa = XCBuildConfiguration;
- 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+-			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
++			baseConfigurationReference = 3C9A56DF2EB44A8400DA1C6E /* WCDBSwift.xcconfig */;
  			buildSettings = {
 +				FRAMEWORK_SEARCH_PATHS = (
 +					"$(inherited)",
@@ -198,10 +234,2215 @@ index f7e33d9..6b4146a 100644
  				MODULEMAP_FILE = "$(SRCROOT)/support/WCDBSwift.modulemap";
 +				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
 +				SUPPORTS_MACCATALYST = YES;
++				SWIFT_ENABLE_EXPLICIT_MODULES = YES;
 +				TARGETED_DEVICE_FAMILY = "1,2,3,4";
  			};
  			name = Release;
  		};
+diff --git a/src/support/WCDB.modulemap b/src/support/WCDB.modulemap
+index f64f0d7..573d8fc 100644
+--- a/src/support/WCDB.modulemap
++++ b/src/support/WCDB.modulemap
+@@ -1,13 +1,13 @@
+ framework module WCDB {
+     requires objc
+ 
+-	module All {
+-		header "WCDB.h"
++    module All {
++        header "WCDB.h"
+         export *
+         requires cplusplus17
+     }
+ 
+-	module BridgeHeader {
++    module BridgeHeader {
+         header "WCTBridgeMacro.h"
+         header "WCTBridgeProperty.h"
+         header "WCTDeclaration.h"
+@@ -16,14 +16,11 @@ framework module WCDB {
+         header "Macro.h"
+         header "WCTPropertyMacro.h"
+         header "WCTTableCoding.h"
+-		export *
+-	}
+-}
+-
+-framework module WCDB_Private {
+-    requires objc
+-
+-    module BridgeHeader {
++        export *
++    }
++    
++    explicit module Private {
++        requires objc
+         umbrella header "WCDBBridging.h"
+         export *
+     }
+diff --git a/src/support/WCDBSwift.modulemap b/src/support/WCDBSwift.modulemap
+index 05b322a..005e62f 100644
+--- a/src/support/WCDBSwift.modulemap
++++ b/src/support/WCDBSwift.modulemap
+@@ -2,12 +2,9 @@ framework module WCDBSwift {
+     module All {
+         export *
+     }
+-}
+-
+-framework module WCDB_Private {
+-    requires objc
+ 
+-    module BridgeHeader {
++    explicit module Private {
++        requires objc
+         umbrella header "WCDBBridging.h"
+         export *
+     }
+diff --git a/src/support/WCDBSwift.xcconfig b/src/support/WCDBSwift.xcconfig
+new file mode 100644
+index 0000000..7eb0bfe
+--- /dev/null
++++ b/src/support/WCDBSwift.xcconfig
+@@ -0,0 +1,3 @@
++#include "WCDB.xcconfig"
++
++SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(inherited) WCDB_SWIFT_TARGET
+diff --git a/src/support/WCDBWithoutCompression.xcconfig b/src/support/WCDBWithoutCompression.xcconfig
+index 9079c63..f63b6cd 100644
+--- a/src/support/WCDBWithoutCompression.xcconfig
++++ b/src/support/WCDBWithoutCompression.xcconfig
+@@ -13,6 +13,4 @@ MARKETING_VERSION = 1.1.0
+ // Preprocessing
+ GCC_PREPROCESSOR_DEFINITIONS = $(inherited) $(WCDB_VERSION_DEFINITIONS) $(SQLITE_PREPROCESSOR_DEFINITIONS) ZLIB_CONST=1 SQLITE_WCDB=1
+ 
+-SWIFT_ENABLE_EXPLICIT_MODULES = NO;
+-
+ OTHER_SWIFT_FLAGS = -no-verify-emitted-module-interface
+diff --git a/src/swift/bridge/ErrorBridge.swift b/src/swift/bridge/ErrorBridge.swift
+index d60de4b..e466906 100644
+--- a/src/swift/bridge/ErrorBridge.swift
++++ b/src/swift/bridge/ErrorBridge.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ internal final class ErrorBridge {
+     static func getErrorFrom(cppError error: CPPError) -> WCDBError {
+diff --git a/src/swift/bridge/FTSBridge.swift b/src/swift/bridge/FTSBridge.swift
+index ccde2e5..9577a77 100644
+--- a/src/swift/bridge/FTSBridge.swift
++++ b/src/swift/bridge/FTSBridge.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public enum TokenizerErrorCode {
+     case OK
+diff --git a/src/swift/bridge/ObjectBridge.swift b/src/swift/bridge/ObjectBridge.swift
+index ac7d343..0c5c53d 100644
+--- a/src/swift/bridge/ObjectBridge.swift
++++ b/src/swift/bridge/ObjectBridge.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ internal final class ValueWrap<T> {
+     var value: T
+diff --git a/src/swift/bridge/WCTBridgeProperty.swift b/src/swift/bridge/WCTBridgeProperty.swift
+index 98e2f53..e747b92 100644
+--- a/src/swift/bridge/WCTBridgeProperty.swift
++++ b/src/swift/bridge/WCTBridgeProperty.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ extension WCTBridgeProperty: PropertyOperable {
+ 
+diff --git a/src/swift/builtin/CodableType.swift b/src/swift/builtin/CodableType.swift
+index 4ddc322..c57fc15 100644
+--- a/src/swift/builtin/CodableType.swift
++++ b/src/swift/builtin/CodableType.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /*
+  * Builtin codable implementation
+diff --git a/src/swift/builtin/Master.swift b/src/swift/builtin/Master.swift
+index b3094e6..19a6a89 100644
+--- a/src/swift/builtin/Master.swift
++++ b/src/swift/builtin/Master.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public struct Master: TableCodable {
+     public static let builtinTableName: String = "sqlite_master"
+diff --git a/src/swift/core/base/BaseType.swift b/src/swift/core/base/BaseType.swift
+index fea07c7..f49892f 100644
+--- a/src/swift/core/base/BaseType.swift
++++ b/src/swift/core/base/BaseType.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public typealias Tag = Int
+ 
+diff --git a/src/swift/core/base/Database+WCTTableCoding.swift b/src/swift/core/base/Database+WCTTableCoding.swift
+index 37e2035..d07f79a 100644
+--- a/src/swift/core/base/Database+WCTTableCoding.swift
++++ b/src/swift/core/base/Database+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ // WCTTable
+ public extension Database {
+diff --git a/src/swift/core/base/Database.swift b/src/swift/core/base/Database.swift
+index 70b2b08..2048b1d 100644
+--- a/src/swift/core/base/Database.swift
++++ b/src/swift/core/base/Database.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Thread-safe Database object
+ public class Database {
+diff --git a/src/swift/core/base/Handle.swift b/src/swift/core/base/Handle.swift
+index ce29b2b..9a7127a 100644
+--- a/src/swift/core/base/Handle.swift
++++ b/src/swift/core/base/Handle.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class Handle {
+     private let recyclableHandle: RecyclableCPPHandle
+diff --git a/src/swift/core/base/HandleStatement+WCTTableCoding.swift b/src/swift/core/base/HandleStatement+WCTTableCoding.swift
+index 6829e66..b2a538b 100644
+--- a/src/swift/core/base/HandleStatement+WCTTableCoding.swift
++++ b/src/swift/core/base/HandleStatement+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ extension PreparedStatement: StatementInterfaceForObjc {}
+ 
+diff --git a/src/swift/core/base/PreparedStatement.swift b/src/swift/core/base/PreparedStatement.swift
+index 9c29170..b4bdbc6 100644
+--- a/src/swift/core/base/PreparedStatement.swift
++++ b/src/swift/core/base/PreparedStatement.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class PreparedStatement {
+     internal let recyclableStmt: RecyclableCPPHandleStatement
+ 
+diff --git a/src/swift/core/base/Table+WCTTableCoding.swift b/src/swift/core/base/Table+WCTTableCoding.swift
+index ea1a754..e89c5dd 100644
+--- a/src/swift/core/base/Table+WCTTableCoding.swift
++++ b/src/swift/core/base/Table+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient table interface
+ extension Table {
+diff --git a/src/swift/core/base/Table.swift b/src/swift/core/base/Table.swift
+index e694c4a..0382b04 100644
+--- a/src/swift/core/base/Table.swift
++++ b/src/swift/core/base/Table.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient table interface
+ public final class Table<Object: Any>: @unchecked Sendable {
+diff --git a/src/swift/core/binding/CheckExpressionConfig.swift b/src/swift/core/binding/CheckExpressionConfig.swift
+index 798f46a..ce63f17 100644
+--- a/src/swift/core/binding/CheckExpressionConfig.swift
++++ b/src/swift/core/binding/CheckExpressionConfig.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class CheckExpressionConfig: TableConfiguration {
+     private let constraints: [TableConstraint]
+diff --git a/src/swift/core/binding/ColumnConstraintConfig.swift b/src/swift/core/binding/ColumnConstraintConfig.swift
+index df0cb97..103c5da 100644
+--- a/src/swift/core/binding/ColumnConstraintConfig.swift
++++ b/src/swift/core/binding/ColumnConstraintConfig.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class ColumnConstraintConfig<CodingTableKeyType: CodingTableKey>: TableConfiguration {
+     let codingKey: CodingTableKeyType
+diff --git a/src/swift/core/binding/ForeignKeyConfig.swift b/src/swift/core/binding/ForeignKeyConfig.swift
+index f5e8a2e..a086fa9 100644
+--- a/src/swift/core/binding/ForeignKeyConfig.swift
++++ b/src/swift/core/binding/ForeignKeyConfig.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class ForeignKeyConfig<CodingTableKeyType: CodingTableKey>: TableConfiguration {
+     let codingKeys: [CodingTableKeyType]
+diff --git a/src/swift/core/binding/IndexConfig.swift b/src/swift/core/binding/IndexConfig.swift
+index b105e21..b347e09 100644
+--- a/src/swift/core/binding/IndexConfig.swift
++++ b/src/swift/core/binding/IndexConfig.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class IndexConfig<CodingTableKeyType: CodingTableKey>: TableConfiguration {
+     private let indexes: [IndexedColumnConvertible]
+diff --git a/src/swift/core/binding/MultiPrimaryConfig.swift b/src/swift/core/binding/MultiPrimaryConfig.swift
+index f20ff78..bf3c3b9 100644
+--- a/src/swift/core/binding/MultiPrimaryConfig.swift
++++ b/src/swift/core/binding/MultiPrimaryConfig.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class MultiPrimaryConfig<CodingTableKeyType: CodingTableKey>: TableConfiguration {
+ 
+diff --git a/src/swift/core/binding/MultiUniqueConfig.swift b/src/swift/core/binding/MultiUniqueConfig.swift
+index f32650f..681c929 100644
+--- a/src/swift/core/binding/MultiUniqueConfig.swift
++++ b/src/swift/core/binding/MultiUniqueConfig.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class MultiUniqueConfig<CodingTableKeyType: CodingTableKey>: TableConfiguration {
+     private let indexes: [IndexedColumnConvertible]
+diff --git a/src/swift/core/binding/Property.swift b/src/swift/core/binding/Property.swift
+index 085fcdf..ff2d01a 100644
+--- a/src/swift/core/binding/Property.swift
++++ b/src/swift/core/binding/Property.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol PropertyConvertible: ColumnConvertible, PropertyRedirectable {
+     func isSwiftProperty() -> Bool
+diff --git a/src/swift/core/binding/Redirectable.swift b/src/swift/core/binding/Redirectable.swift
+index 6e55cdf..15dcf75 100644
+--- a/src/swift/core/binding/Redirectable.swift
++++ b/src/swift/core/binding/Redirectable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol PropertyRedirectable {
+     func `as`(_ propertyConvertible: PropertyConvertible) -> Property
+diff --git a/src/swift/core/binding/TableBinding.swift b/src/swift/core/binding/TableBinding.swift
+index d7a870a..3497fbd 100644
+--- a/src/swift/core/binding/TableBinding.swift
++++ b/src/swift/core/binding/TableBinding.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public class TableBindingBase {
+     private let recyclableBinding: Recyclable<CPPBinding>
+diff --git a/src/swift/core/binding/TableConfiguration.swift b/src/swift/core/binding/TableConfiguration.swift
+index f526ebd..7aad1fb 100644
+--- a/src/swift/core/binding/TableConfiguration.swift
++++ b/src/swift/core/binding/TableConfiguration.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol TableConfiguration {
+     func config(with tableBinding: TableBindingBase)
+diff --git a/src/swift/core/binding/VirtualTableConfig.swift b/src/swift/core/binding/VirtualTableConfig.swift
+index 6ac3731..e06df91 100644
+--- a/src/swift/core/binding/VirtualTableConfig.swift
++++ b/src/swift/core/binding/VirtualTableConfig.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class VirtualTableConfig: TableConfiguration {
+     let module: String
+diff --git a/src/swift/core/chaincall/ChainCall+WCTTableCoding.swift b/src/swift/core/chaincall/ChainCall+WCTTableCoding.swift
+index f38f156..b861040 100644
+--- a/src/swift/core/chaincall/ChainCall+WCTTableCoding.swift
++++ b/src/swift/core/chaincall/ChainCall+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// ChainCall interface for inserting
+ public protocol InsertChainCallInterfaceForObjc: AnyObject {
+diff --git a/src/swift/core/chaincall/ChainCall.swift b/src/swift/core/chaincall/ChainCall.swift
+index 3145f8f..4e6f283 100644
+--- a/src/swift/core/chaincall/ChainCall.swift
++++ b/src/swift/core/chaincall/ChainCall.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// ChainCall interface for inserting
+ public protocol InsertChainCallInterface: AnyObject {
+diff --git a/src/swift/core/chaincall/Declare.swift b/src/swift/core/chaincall/Declare.swift
+index 6a95d75..334bf54 100644
+--- a/src/swift/core/chaincall/Declare.swift
++++ b/src/swift/core/chaincall/Declare.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public typealias Condition = ExpressionConvertible
+ public typealias Limit = ExpressionConvertible
+diff --git a/src/swift/core/chaincall/Delete.swift b/src/swift/core/chaincall/Delete.swift
+index cf5a2c0..6ed30b3 100644
+--- a/src/swift/core/chaincall/Delete.swift
++++ b/src/swift/core/chaincall/Delete.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Chain call for deleting
+ public final class Delete {
+diff --git a/src/swift/core/chaincall/Insert+WCTTableCoding.swift b/src/swift/core/chaincall/Insert+WCTTableCoding.swift
+index c461d87..b8af816 100644
+--- a/src/swift/core/chaincall/Insert+WCTTableCoding.swift
++++ b/src/swift/core/chaincall/Insert+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public extension Insert {
+ 
+diff --git a/src/swift/core/chaincall/Insert.swift b/src/swift/core/chaincall/Insert.swift
+index 75c8549..f431df5 100644
+--- a/src/swift/core/chaincall/Insert.swift
++++ b/src/swift/core/chaincall/Insert.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Chain call for inserting
+ public final class Insert {
+diff --git a/src/swift/core/chaincall/MultiSelect.swift b/src/swift/core/chaincall/MultiSelect.swift
+index 746f882..22707d6 100644
+--- a/src/swift/core/chaincall/MultiSelect.swift
++++ b/src/swift/core/chaincall/MultiSelect.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Chain call for multi-selecting
+ public final class MultiSelect: Selectable {
+diff --git a/src/swift/core/chaincall/RowSelect.swift b/src/swift/core/chaincall/RowSelect.swift
+index 8fd0007..04e9014 100644
+--- a/src/swift/core/chaincall/RowSelect.swift
++++ b/src/swift/core/chaincall/RowSelect.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Chain call for row-selecting
+ public final class RowSelect: Selectable {
+diff --git a/src/swift/core/chaincall/Select+WCTTableCoding.swift b/src/swift/core/chaincall/Select+WCTTableCoding.swift
+index 969c910..6841754 100644
+--- a/src/swift/core/chaincall/Select+WCTTableCoding.swift
++++ b/src/swift/core/chaincall/Select+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public extension Select {
+     /// Get next selected object with type. You can do an iteration using it.
+diff --git a/src/swift/core/chaincall/Select.swift b/src/swift/core/chaincall/Select.swift
+index b5bf860..d46fc9e 100644
+--- a/src/swift/core/chaincall/Select.swift
++++ b/src/swift/core/chaincall/Select.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class Select: Selectable {
+     internal let properties: [PropertyConvertible]
+diff --git a/src/swift/core/chaincall/Selectable.swift b/src/swift/core/chaincall/Selectable.swift
+index b0715c8..030d1ab 100644
+--- a/src/swift/core/chaincall/Selectable.swift
++++ b/src/swift/core/chaincall/Selectable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public class Selectable {
+     public final let statement: StatementSelect
+diff --git a/src/swift/core/chaincall/TableChainCall+WCTTableCoding.swift b/src/swift/core/chaincall/TableChainCall+WCTTableCoding.swift
+index 55871f8..254e4f0 100644
+--- a/src/swift/core/chaincall/TableChainCall+WCTTableCoding.swift
++++ b/src/swift/core/chaincall/TableChainCall+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// ChainCall interface for inserting
+ public protocol TableInsertChainCallInterfaceForObjc: AnyObject {
+diff --git a/src/swift/core/chaincall/Update+WCTTableCoding.swift b/src/swift/core/chaincall/Update+WCTTableCoding.swift
+index a028105..9d8eaec 100644
+--- a/src/swift/core/chaincall/Update+WCTTableCoding.swift
++++ b/src/swift/core/chaincall/Update+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public extension Update {
+     func execute<Object: WCTTableCoding>(with object: Object) throws {
+diff --git a/src/swift/core/chaincall/Update.swift b/src/swift/core/chaincall/Update.swift
+index ba55b12..b9a92bb 100644
+--- a/src/swift/core/chaincall/Update.swift
++++ b/src/swift/core/chaincall/Update.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// The chain call for updating
+ public final class Update {
+diff --git a/src/swift/core/codable/CodingTableKey.swift b/src/swift/core/codable/CodingTableKey.swift
+index a7949b7..9f3bebe 100644
+--- a/src/swift/core/codable/CodingTableKey.swift
++++ b/src/swift/core/codable/CodingTableKey.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol CodingTableKeyBase: CodingKey {
+     var rootType: TableCodableBase.Type {get}
+diff --git a/src/swift/core/codable/ColumnCodable.swift b/src/swift/core/codable/ColumnCodable.swift
+index 7334912..325fab5 100644
+--- a/src/swift/core/codable/ColumnCodable.swift
++++ b/src/swift/core/codable/ColumnCodable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ // Column 
+ public protocol ColumnCodableBase {
+diff --git a/src/swift/core/codable/ColumnTypeDecoder.swift b/src/swift/core/codable/ColumnTypeDecoder.swift
+index 3aae82d..fde4a5a 100644
+--- a/src/swift/core/codable/ColumnTypeDecoder.swift
++++ b/src/swift/core/codable/ColumnTypeDecoder.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ internal final class ColumnTypeDecoder: Decoder {
+ 
+diff --git a/src/swift/core/codable/TableCodable.swift b/src/swift/core/codable/TableCodable.swift
+index b4f708b..2f48eaf 100644
+--- a/src/swift/core/codable/TableCodable.swift
++++ b/src/swift/core/codable/TableCodable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol TableCodableBase {}
+ 
+diff --git a/src/swift/core/codable/TableDecoder.swift b/src/swift/core/codable/TableDecoder.swift
+index 02aeb6b..a72b5ed 100644
+--- a/src/swift/core/codable/TableDecoder.swift
++++ b/src/swift/core/codable/TableDecoder.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ final class TableDecoder: Decoder {
+ 
+diff --git a/src/swift/core/codable/TableEncoder.swift b/src/swift/core/codable/TableEncoder.swift
+index 627d07b..d41cf1c 100644
+--- a/src/swift/core/codable/TableEncoder.swift
++++ b/src/swift/core/codable/TableEncoder.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ final class TableEncoder: Encoder {
+ 
+diff --git a/src/swift/core/interface/DeleteInterface.swift b/src/swift/core/interface/DeleteInterface.swift
+index 7361694..f9f3308 100644
+--- a/src/swift/core/interface/DeleteInterface.swift
++++ b/src/swift/core/interface/DeleteInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for deleting
+ public protocol DeleteInterface: AnyObject {
+diff --git a/src/swift/core/interface/InsertInterface+WCTTableCoding.swift b/src/swift/core/interface/InsertInterface+WCTTableCoding.swift
+index 3eb916e..f871179 100644
+--- a/src/swift/core/interface/InsertInterface+WCTTableCoding.swift
++++ b/src/swift/core/interface/InsertInterface+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol InsertInterfaceForObjc {
+     /// Execute inserting with `WCTTableCoding` object on specific(or all) properties
+diff --git a/src/swift/core/interface/InsertInterface.swift b/src/swift/core/interface/InsertInterface.swift
+index 99b917d..b74542f 100644
+--- a/src/swift/core/interface/InsertInterface.swift
++++ b/src/swift/core/interface/InsertInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for inserting
+ public protocol InsertInterface: AnyObject {
+diff --git a/src/swift/core/interface/SelectInterface+WCTTableCoding.swift b/src/swift/core/interface/SelectInterface+WCTTableCoding.swift
+index 59cf9c1..d1d9510 100644
+--- a/src/swift/core/interface/SelectInterface+WCTTableCoding.swift
++++ b/src/swift/core/interface/SelectInterface+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for selecting
+ public protocol SelectInterfaceForObjc: AnyObject {
+diff --git a/src/swift/core/interface/SelectInterface.swift b/src/swift/core/interface/SelectInterface.swift
+index 1ee5f84..22e91b9 100644
+--- a/src/swift/core/interface/SelectInterface.swift
++++ b/src/swift/core/interface/SelectInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for row selecting
+ public protocol RowSelectInterface: AnyObject {
+diff --git a/src/swift/core/interface/StatementInterface+WCTTableCoding.swift b/src/swift/core/interface/StatementInterface+WCTTableCoding.swift
+index 38a4570..38778e4 100644
+--- a/src/swift/core/interface/StatementInterface+WCTTableCoding.swift
++++ b/src/swift/core/interface/StatementInterface+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol StatementInterfaceForObjc {
+     /// The wrapper of `sqlite3_bind_*` for binding property of object to index.
+diff --git a/src/swift/core/interface/StatementInterface.swift b/src/swift/core/interface/StatementInterface.swift
+index 88cfd7c..f47e5d5 100644
+--- a/src/swift/core/interface/StatementInterface.swift
++++ b/src/swift/core/interface/StatementInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol StatementInterface: AnyObject {
+     /// The wrapper of `sqlite3_finalize`
+diff --git a/src/swift/core/interface/StatementSelectInterface.swift b/src/swift/core/interface/StatementSelectInterface.swift
+index 51cf023..0a0f705 100644
+--- a/src/swift/core/interface/StatementSelectInterface.swift
++++ b/src/swift/core/interface/StatementSelectInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for getting result with statement
+ public protocol StatementSelectInterface: AnyObject {
+diff --git a/src/swift/core/interface/TableCRUDInterface+WCTTableCoding.swift b/src/swift/core/interface/TableCRUDInterface+WCTTableCoding.swift
+index a2e68c8..f131b00 100644
+--- a/src/swift/core/interface/TableCRUDInterface+WCTTableCoding.swift
++++ b/src/swift/core/interface/TableCRUDInterface+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol InsertTableInterfaceForObjc: AnyObject {
+     associatedtype Object: WCTTableCoding
+diff --git a/src/swift/core/interface/TableCRUDInterface.swift b/src/swift/core/interface/TableCRUDInterface.swift
+index 63089cd..95b1a9e 100644
+--- a/src/swift/core/interface/TableCRUDInterface.swift
++++ b/src/swift/core/interface/TableCRUDInterface.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol InsertTableInterface: AnyObject {
+     associatedtype Object: TableEncodable
+diff --git a/src/swift/core/interface/TableInterface+WCTTableCoding.swift b/src/swift/core/interface/TableInterface+WCTTableCoding.swift
+index 5d7bdf8..7b6482c 100644
+--- a/src/swift/core/interface/TableInterface+WCTTableCoding.swift
++++ b/src/swift/core/interface/TableInterface+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for table related operation
+ public protocol TableInterfaceForObjc: AnyObject {
+diff --git a/src/swift/core/interface/TableInterface.swift b/src/swift/core/interface/TableInterface.swift
+index f553837..9cde11c 100644
+--- a/src/swift/core/interface/TableInterface.swift
++++ b/src/swift/core/interface/TableInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for table related operation
+ public protocol TableInterface: AnyObject {
+diff --git a/src/swift/core/interface/TransactionInterface.swift b/src/swift/core/interface/TransactionInterface.swift
+index 3e53e4b..a7f76b2 100644
+--- a/src/swift/core/interface/TransactionInterface.swift
++++ b/src/swift/core/interface/TransactionInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol TransactionInterface {
+     /// Separate interface of `run(transaction:)`
+diff --git a/src/swift/core/interface/UpdateInterface+WCTTableCoding.swift b/src/swift/core/interface/UpdateInterface+WCTTableCoding.swift
+index 2ca733f..0568f43 100644
+--- a/src/swift/core/interface/UpdateInterface+WCTTableCoding.swift
++++ b/src/swift/core/interface/UpdateInterface+WCTTableCoding.swift
+@@ -25,7 +25,13 @@
+ #if WCDB_SWIFT_BRIDGE_OBJC
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for updating
+ public protocol UpdateInterfaceForObjc: AnyObject {
+diff --git a/src/swift/core/interface/UpdateInterface.swift b/src/swift/core/interface/UpdateInterface.swift
+index c845de8..4518953 100644
+--- a/src/swift/core/interface/UpdateInterface.swift
++++ b/src/swift/core/interface/UpdateInterface.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ /// Convenient interface for updating
+ public protocol UpdateInterface: AnyObject {
+diff --git a/src/swift/util/Convenience.swift b/src/swift/util/Convenience.swift
+index a2a6058..339f5db 100644
+--- a/src/swift/util/Convenience.swift
++++ b/src/swift/util/Convenience.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ internal extension Array {
+     func joined(_ map: (Element) -> String, separateBy separator: String = ", ") -> String {
+diff --git a/src/swift/util/Lock.swift b/src/swift/util/Lock.swift
+index 5a790ce..2a1b4d7 100644
+--- a/src/swift/util/Lock.swift
++++ b/src/swift/util/Lock.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ internal protocol Lockable: AnyObject {
+     func lock()
+diff --git a/src/swift/util/Optional.swift b/src/swift/util/Optional.swift
+index bde7d63..d5264c3 100644
+--- a/src/swift/util/Optional.swift
++++ b/src/swift/util/Optional.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol OptionalRepresentable {
+     associatedtype WrappedType
+diff --git a/src/swift/util/Recyclable.swift b/src/swift/util/Recyclable.swift
+index 0dcf537..0bc007d 100644
+--- a/src/swift/util/Recyclable.swift
++++ b/src/swift/util/Recyclable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ // TODO: Refactor
+ internal class Recyclable<Value> {
+diff --git a/src/swift/util/WCDBError.swift b/src/swift/util/WCDBError.swift
+index 4cda2cf..a5b2236 100644
+--- a/src/swift/util/WCDBError.swift
++++ b/src/swift/util/WCDBError.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class WCDBError: Swift.Error, CustomStringConvertible {
+     public enum Code: Int, Sendable {
+diff --git a/src/swift/winq/Convertible.swift b/src/swift/winq/Convertible.swift
+index bacba6b..c2d3402 100644
+--- a/src/swift/winq/Convertible.swift
++++ b/src/swift/winq/Convertible.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol OrderingTermConvertible {
+     func asOrder() -> OrderingTerm
+diff --git a/src/swift/winq/Identifier.swift b/src/swift/winq/Identifier.swift
+index f82e016..0f5bf43 100644
+--- a/src/swift/winq/Identifier.swift
++++ b/src/swift/winq/Identifier.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public typealias Describable = CustomStringConvertible
+ 
+diff --git a/src/swift/winq/Statement.swift b/src/swift/winq/Statement.swift
+index b43642c..2e58ce4 100644
+--- a/src/swift/winq/Statement.swift
++++ b/src/swift/winq/Statement.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public protocol Statement: AnyObject, CustomStringConvertible {
+     var rawCPPObj: UnsafeMutablePointer<CPPObject> { get }
+diff --git a/src/swift/winq/SyntaxConst.swift b/src/swift/winq/SyntaxConst.swift
+index d7697dc..fc6c6c6 100644
+--- a/src/swift/winq/SyntaxConst.swift
++++ b/src/swift/winq/SyntaxConst.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public enum Order {
+     case ascending
+diff --git a/src/swift/winq/Value.swift b/src/swift/winq/Value.swift
+index c3ea5df..ba7b6be 100644
+--- a/src/swift/winq/Value.swift
++++ b/src/swift/winq/Value.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ // nullable, Int32, Int64, Double, String, Data
+ public struct Value: @unchecked Sendable {
+diff --git a/src/swift/winq/identifier/BindParameter.swift b/src/swift/winq/identifier/BindParameter.swift
+index 570e8e6..e47ddb4 100644
+--- a/src/swift/winq/identifier/BindParameter.swift
++++ b/src/swift/winq/identifier/BindParameter.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class BindParameter: Identifier<CPPBindParameter> {
+ 
+diff --git a/src/swift/winq/identifier/Column.swift b/src/swift/winq/identifier/Column.swift
+index d6102a8..5f9e4b6 100644
+--- a/src/swift/winq/identifier/Column.swift
++++ b/src/swift/winq/identifier/Column.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class Column: Identifier<CPPColumn> {
+ 
+diff --git a/src/swift/winq/identifier/ColumnConstraint.swift b/src/swift/winq/identifier/ColumnConstraint.swift
+index d01f970..1b50b8f 100644
+--- a/src/swift/winq/identifier/ColumnConstraint.swift
++++ b/src/swift/winq/identifier/ColumnConstraint.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class ColumnConstraint: Identifier<CPPColumnConstraint> {
+ 
+diff --git a/src/swift/winq/identifier/ColumnDef.swift b/src/swift/winq/identifier/ColumnDef.swift
+index 32f1c22..4b2ff7c 100644
+--- a/src/swift/winq/identifier/ColumnDef.swift
++++ b/src/swift/winq/identifier/ColumnDef.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class ColumnDef: Identifier<CPPColumnDef> {
+ 
+diff --git a/src/swift/winq/identifier/CommonTableExpression.swift b/src/swift/winq/identifier/CommonTableExpression.swift
+index 564ad12..25e9df4 100644
+--- a/src/swift/winq/identifier/CommonTableExpression.swift
++++ b/src/swift/winq/identifier/CommonTableExpression.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class CommonTableExpression: Identifier<CPPCommonTableExpression> {
+ 
+diff --git a/src/swift/winq/identifier/Expression.swift b/src/swift/winq/identifier/Expression.swift
+index 304d3c2..496f31f 100644
+--- a/src/swift/winq/identifier/Expression.swift
++++ b/src/swift/winq/identifier/Expression.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class Expression: Identifier<CPPExpression> {
+ 
+diff --git a/src/swift/winq/identifier/ForeignKey.swift b/src/swift/winq/identifier/ForeignKey.swift
+index a07556c..ebce920 100644
+--- a/src/swift/winq/identifier/ForeignKey.swift
++++ b/src/swift/winq/identifier/ForeignKey.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class ForeignKey: Identifier<CPPForeignKey> {
+ 
+diff --git a/src/swift/winq/identifier/FrameSpec.swift b/src/swift/winq/identifier/FrameSpec.swift
+index dfe53b6..a1ce0c4 100644
+--- a/src/swift/winq/identifier/FrameSpec.swift
++++ b/src/swift/winq/identifier/FrameSpec.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class FrameSpec: Identifier<CPPFrameSpec> {
+ 
+diff --git a/src/swift/winq/identifier/IndexedColumn.swift b/src/swift/winq/identifier/IndexedColumn.swift
+index 5927fe2..bff21bb 100644
+--- a/src/swift/winq/identifier/IndexedColumn.swift
++++ b/src/swift/winq/identifier/IndexedColumn.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class IndexedColumn: Identifier<CPPIndexedColumn> {
+ 
+diff --git a/src/swift/winq/identifier/Join.swift b/src/swift/winq/identifier/Join.swift
+index e5b003b..ddc1935 100644
+--- a/src/swift/winq/identifier/Join.swift
++++ b/src/swift/winq/identifier/Join.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class Join: Identifier<CPPJoin> {
+ 
+     public init(with subqueryConvertible: TableOrSubqueryConvertible) {
+diff --git a/src/swift/winq/identifier/LiteralValue.swift b/src/swift/winq/identifier/LiteralValue.swift
+index 7fb802a..d49497d 100644
+--- a/src/swift/winq/identifier/LiteralValue.swift
++++ b/src/swift/winq/identifier/LiteralValue.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class LiteralValue: Identifier<CPPLiteralValue> {
+ 
+diff --git a/src/swift/winq/identifier/Operable.swift b/src/swift/winq/identifier/Operable.swift
+index 48f1a3e..2f31528 100644
+--- a/src/swift/winq/identifier/Operable.swift
++++ b/src/swift/winq/identifier/Operable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ internal enum UnaryOperateType {
+     case negative
+diff --git a/src/swift/winq/identifier/OrderingTerm.swift b/src/swift/winq/identifier/OrderingTerm.swift
+index ea80e16..47cc7cc 100644
+--- a/src/swift/winq/identifier/OrderingTerm.swift
++++ b/src/swift/winq/identifier/OrderingTerm.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class OrderingTerm: Identifier<CPPOrderingTerm> {
+     public init(with expressionConvertible: ExpressionConvertible) {
+diff --git a/src/swift/winq/identifier/Pragma.swift b/src/swift/winq/identifier/Pragma.swift
+index d786f99..c23de55 100644
+--- a/src/swift/winq/identifier/Pragma.swift
++++ b/src/swift/winq/identifier/Pragma.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class Pragma: Identifier<CPPPragma> {
+ 
+diff --git a/src/swift/winq/identifier/QualifiedTable.swift b/src/swift/winq/identifier/QualifiedTable.swift
+index 9d942f6..9ffbbfd 100644
+--- a/src/swift/winq/identifier/QualifiedTable.swift
++++ b/src/swift/winq/identifier/QualifiedTable.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class QualifiedTable: Identifier<CPPQualifiedTable> {
+     public init(with name: String) {
+diff --git a/src/swift/winq/identifier/RaiseFunction.swift b/src/swift/winq/identifier/RaiseFunction.swift
+index 6ddd146..4849095 100644
+--- a/src/swift/winq/identifier/RaiseFunction.swift
++++ b/src/swift/winq/identifier/RaiseFunction.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class RaiseFunction: Identifier<CPPRaiseFunction> {
+ 
+diff --git a/src/swift/winq/identifier/ResultColumn.swift b/src/swift/winq/identifier/ResultColumn.swift
+index 749fea7..97540ce 100644
+--- a/src/swift/winq/identifier/ResultColumn.swift
++++ b/src/swift/winq/identifier/ResultColumn.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class ResultColumn: Identifier<CPPResultColumn> {
+ 
+diff --git a/src/swift/winq/identifier/Schema.swift b/src/swift/winq/identifier/Schema.swift
+index ed5d0fe..08c4608 100644
+--- a/src/swift/winq/identifier/Schema.swift
++++ b/src/swift/winq/identifier/Schema.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class Schema: Identifier<CPPSchema> {
+     public convenience init(with name: String) {
+diff --git a/src/swift/winq/identifier/TableConstraint.swift b/src/swift/winq/identifier/TableConstraint.swift
+index cd7e0db..43a06f9 100644
+--- a/src/swift/winq/identifier/TableConstraint.swift
++++ b/src/swift/winq/identifier/TableConstraint.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class TableConstraint: Identifier<CPPTableConstraint> {
+     public init(named name: String? = nil) {
+         super.init(with: WCDBTableConstraintCreate(name?.cString))
+diff --git a/src/swift/winq/identifier/TableOrSubquery.swift b/src/swift/winq/identifier/TableOrSubquery.swift
+index 174b9a3..aea04bc 100644
+--- a/src/swift/winq/identifier/TableOrSubquery.swift
++++ b/src/swift/winq/identifier/TableOrSubquery.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class TableOrSubquery: Identifier<CPPTableOrSubquery> {
+ 
+     public convenience init(withTable table: String) {
+diff --git a/src/swift/winq/identifier/Upsert.swift b/src/swift/winq/identifier/Upsert.swift
+index 165e1cd..7cb79c6 100644
+--- a/src/swift/winq/identifier/Upsert.swift
++++ b/src/swift/winq/identifier/Upsert.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class Upsert: Identifier<CPPUpsert> {
+ 
+diff --git a/src/swift/winq/identifier/WindowDef.swift b/src/swift/winq/identifier/WindowDef.swift
+index 143d55e..9553af3 100644
+--- a/src/swift/winq/identifier/WindowDef.swift
++++ b/src/swift/winq/identifier/WindowDef.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class WindowDef: Identifier<CPPWindowDef> {
+ 
+     public init() {
+diff --git a/src/swift/winq/statement/StatementAlterTable.swift b/src/swift/winq/statement/StatementAlterTable.swift
+index 3d824fe..fcc76d1 100644
+--- a/src/swift/winq/statement/StatementAlterTable.swift
++++ b/src/swift/winq/statement/StatementAlterTable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class StatementAlterTable: Identifier<CPPStatementAlterTable>, Statement {
+     public init() {
+diff --git a/src/swift/winq/statement/StatementAnalyze.swift b/src/swift/winq/statement/StatementAnalyze.swift
+index 6d80bec..76739fd 100644
+--- a/src/swift/winq/statement/StatementAnalyze.swift
++++ b/src/swift/winq/statement/StatementAnalyze.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class StatementAnalyze: Identifier<CPPStatementAnalyze>, Statement {
+     public init() {
+diff --git a/src/swift/winq/statement/StatementAttach.swift b/src/swift/winq/statement/StatementAttach.swift
+index b8ca28f..c648405 100644
+--- a/src/swift/winq/statement/StatementAttach.swift
++++ b/src/swift/winq/statement/StatementAttach.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementAttach: Identifier<CPPStatementAttach>, Statement {
+     public init() {
+         super.init(with: WCDBStatementAttachCreate())
+diff --git a/src/swift/winq/statement/StatementBegin.swift b/src/swift/winq/statement/StatementBegin.swift
+index 27ca489..ef23bda 100644
+--- a/src/swift/winq/statement/StatementBegin.swift
++++ b/src/swift/winq/statement/StatementBegin.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementBegin: Identifier<CPPStatementBegin>, Statement {
+     public init() {
+         super.init(with: WCDBStatementBeginCreate())
+diff --git a/src/swift/winq/statement/StatementCommit.swift b/src/swift/winq/statement/StatementCommit.swift
+index 5d85855..22a4daa 100644
+--- a/src/swift/winq/statement/StatementCommit.swift
++++ b/src/swift/winq/statement/StatementCommit.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementCommit: Identifier<CPPStatementCommit>, Statement {
+     public init() {
+         super.init(with: WCDBStatementCommitCreate())
+diff --git a/src/swift/winq/statement/StatementCreateIndex.swift b/src/swift/winq/statement/StatementCreateIndex.swift
+index a9be519..c6df05e 100644
+--- a/src/swift/winq/statement/StatementCreateIndex.swift
++++ b/src/swift/winq/statement/StatementCreateIndex.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class StatementCreateIndex: Identifier<CPPStatementCreateIndex>, Statement {
+     public init() {
+diff --git a/src/swift/winq/statement/StatementCreateTable.swift b/src/swift/winq/statement/StatementCreateTable.swift
+index a9b0d70..5d9fade 100644
+--- a/src/swift/winq/statement/StatementCreateTable.swift
++++ b/src/swift/winq/statement/StatementCreateTable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementCreateTable: Identifier<CPPStatementCreateTable>, Statement {
+     public init() {
+         super.init(with: WCDBStatementCreateTableCreate())
+diff --git a/src/swift/winq/statement/StatementCreateTrigger.swift b/src/swift/winq/statement/StatementCreateTrigger.swift
+index 948953b..5515381 100644
+--- a/src/swift/winq/statement/StatementCreateTrigger.swift
++++ b/src/swift/winq/statement/StatementCreateTrigger.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ 
+ public final class StatementCreateTrigger: Identifier<CPPStatementCreateTrigger>, Statement {
+     public init() {
+diff --git a/src/swift/winq/statement/StatementCreateView.swift b/src/swift/winq/statement/StatementCreateView.swift
+index b4c4a07..4c34d56 100644
+--- a/src/swift/winq/statement/StatementCreateView.swift
++++ b/src/swift/winq/statement/StatementCreateView.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementCreateView: Identifier<CPPStatementCreateView>, Statement {
+     public init() {
+         super.init(with: WCDBStatementCreateViewCreate())
+diff --git a/src/swift/winq/statement/StatementCreateVirtualTable.swift b/src/swift/winq/statement/StatementCreateVirtualTable.swift
+index 54e5078..492da5d 100644
+--- a/src/swift/winq/statement/StatementCreateVirtualTable.swift
++++ b/src/swift/winq/statement/StatementCreateVirtualTable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementCreateVirtualTable: Identifier<CPPStatementCreateVirtualTable>, Statement {
+     public init() {
+         super.init(with: WCDBStatementCreateVirtualTableCreate())
+diff --git a/src/swift/winq/statement/StatementDelete.swift b/src/swift/winq/statement/StatementDelete.swift
+index a020fc0..6383a3e 100644
+--- a/src/swift/winq/statement/StatementDelete.swift
++++ b/src/swift/winq/statement/StatementDelete.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementDelete: Identifier<CPPStatementDelete>, Statement {
+     public init() {
+         super.init(with: WCDBStatementDeleteCreate())
+diff --git a/src/swift/winq/statement/StatementDetach.swift b/src/swift/winq/statement/StatementDetach.swift
+index f95ab19..28fa64e 100644
+--- a/src/swift/winq/statement/StatementDetach.swift
++++ b/src/swift/winq/statement/StatementDetach.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementDetach: Identifier<CPPStatementDetach>, Statement {
+     public init() {
+         super.init(with: WCDBStatementDetachCreate())
+diff --git a/src/swift/winq/statement/StatementDropIndex.swift b/src/swift/winq/statement/StatementDropIndex.swift
+index 0307012..acc5af7 100644
+--- a/src/swift/winq/statement/StatementDropIndex.swift
++++ b/src/swift/winq/statement/StatementDropIndex.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementDropIndex: Identifier<CPPStatementDropIndex>, Statement {
+     public init() {
+         super.init(with: WCDBStatementDropIndexCreate())
+diff --git a/src/swift/winq/statement/StatementDropTable.swift b/src/swift/winq/statement/StatementDropTable.swift
+index 27dbf6b..c6bf38b 100644
+--- a/src/swift/winq/statement/StatementDropTable.swift
++++ b/src/swift/winq/statement/StatementDropTable.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementDropTable: Identifier<CPPStatementDropTable>, Statement {
+     public init() {
+         super.init(with: WCDBStatementDropTableCreate())
+diff --git a/src/swift/winq/statement/StatementDropTrigger.swift b/src/swift/winq/statement/StatementDropTrigger.swift
+index 30efa03..ae1c082 100644
+--- a/src/swift/winq/statement/StatementDropTrigger.swift
++++ b/src/swift/winq/statement/StatementDropTrigger.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementDropTrigger: Identifier<CPPStatementDropTrigger>, Statement {
+     public init() {
+         super.init(with: WCDBStatementDropTriggerCreate())
+diff --git a/src/swift/winq/statement/StatementDropView.swift b/src/swift/winq/statement/StatementDropView.swift
+index 93b8d41..77d58b8 100644
+--- a/src/swift/winq/statement/StatementDropView.swift
++++ b/src/swift/winq/statement/StatementDropView.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementDropView: Identifier<CPPStatementDropView>, Statement {
+     public init() {
+         super.init(with: WCDBStatementDropViewCreate())
+diff --git a/src/swift/winq/statement/StatementExplain.swift b/src/swift/winq/statement/StatementExplain.swift
+index ea02148..2b93997 100644
+--- a/src/swift/winq/statement/StatementExplain.swift
++++ b/src/swift/winq/statement/StatementExplain.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementExplain: Identifier<CPPStatementExplain>, Statement {
+     public init() {
+         super.init(with: WCDBStatementExplainCreate())
+diff --git a/src/swift/winq/statement/StatementInsert.swift b/src/swift/winq/statement/StatementInsert.swift
+index 6ca436d..7b4bda5 100644
+--- a/src/swift/winq/statement/StatementInsert.swift
++++ b/src/swift/winq/statement/StatementInsert.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementInsert: Identifier<CPPStatementInsert>, Statement {
+     public init() {
+         super.init(with: WCDBStatementInsertCreate())
+diff --git a/src/swift/winq/statement/StatementPragma.swift b/src/swift/winq/statement/StatementPragma.swift
+index 6b4feaa..1ba63fc 100644
+--- a/src/swift/winq/statement/StatementPragma.swift
++++ b/src/swift/winq/statement/StatementPragma.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementPragma: Identifier<CPPStatementPragma>, Statement {
+     public init() {
+         super.init(with: WCDBStatementPragmaCreate())
+diff --git a/src/swift/winq/statement/StatementReindex.swift b/src/swift/winq/statement/StatementReindex.swift
+index 2beab73..aa9721a 100644
+--- a/src/swift/winq/statement/StatementReindex.swift
++++ b/src/swift/winq/statement/StatementReindex.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementReindex: Identifier<CPPStatementReIndex>, Statement {
+     public init() {
+         super.init(with: WCDBStatementReIndexCreate())
+diff --git a/src/swift/winq/statement/StatementRelease.swift b/src/swift/winq/statement/StatementRelease.swift
+index 268865f..47a29a2 100644
+--- a/src/swift/winq/statement/StatementRelease.swift
++++ b/src/swift/winq/statement/StatementRelease.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementRelease: Identifier<CPPStatementRelease>, Statement {
+     public init() {
+         super.init(with: WCDBStatementReleaseCreate())
+diff --git a/src/swift/winq/statement/StatementRollback.swift b/src/swift/winq/statement/StatementRollback.swift
+index ae7e7ad..caea931 100644
+--- a/src/swift/winq/statement/StatementRollback.swift
++++ b/src/swift/winq/statement/StatementRollback.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementRollback: Identifier<CPPStatementRollback>, Statement {
+     public init() {
+         super.init(with: WCDBStatementRollbackCreate())
+diff --git a/src/swift/winq/statement/StatementSavepoint.swift b/src/swift/winq/statement/StatementSavepoint.swift
+index d8caa42..8bb485a 100644
+--- a/src/swift/winq/statement/StatementSavepoint.swift
++++ b/src/swift/winq/statement/StatementSavepoint.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementSavepoint: Identifier<CPPStatementSavepoint>, Statement {
+     public init() {
+         super.init(with: WCDBStatementSavepointCreate())
+diff --git a/src/swift/winq/statement/StatementSelect.swift b/src/swift/winq/statement/StatementSelect.swift
+index d49e809..5d117d2 100644
+--- a/src/swift/winq/statement/StatementSelect.swift
++++ b/src/swift/winq/statement/StatementSelect.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementSelect: Identifier<CPPStatementSelect>, Statement {
+ 
+     public init() {
+diff --git a/src/swift/winq/statement/StatementUpdate.swift b/src/swift/winq/statement/StatementUpdate.swift
+index 1986e7c..8818eba 100644
+--- a/src/swift/winq/statement/StatementUpdate.swift
++++ b/src/swift/winq/statement/StatementUpdate.swift
+@@ -19,7 +19,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementUpdate: Identifier<CPPStatementUpdate>, Statement {
+ 
+     public init() {
+diff --git a/src/swift/winq/statement/StatementVacuum.swift b/src/swift/winq/statement/StatementVacuum.swift
+index 287d67b..02af09c 100644
+--- a/src/swift/winq/statement/StatementVacuum.swift
++++ b/src/swift/winq/statement/StatementVacuum.swift
+@@ -23,7 +23,13 @@
+  */
+ 
+ import Foundation
++#if SWIFT_PACKAGE
+ import WCDB_Private
++#elseif WCDB_SWIFT_TARGET
++import WCDBSwift.Private
++#else
++import WCDB.Private
++#endif
+ public final class StatementVacuum: Identifier<CPPStatementVacuum>, Statement {
+     public init() {
+         super.init(with: WCDBStatementVacuumCreate())
 diff --git a/src/zstd.xcodeproj/project.pbxproj b/src/zstd.xcodeproj/project.pbxproj
 index f25c637..ca4be13 100644
 --- a/src/zstd.xcodeproj/project.pbxproj

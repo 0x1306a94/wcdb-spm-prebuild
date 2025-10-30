@@ -104,10 +104,10 @@ def main():
     }
 
     destinations = {
-        "ios": "generic/platform=iOS",
+        "ios": "generic/platform=iOS,name=Any iOS Device",
         "ios-simulator": "generic/platform=iOS Simulator",
-        "macos": "generic/platform=macOS",
-        "macos-catalyst": "generic/platform=macOS,variant=Mac Catalyst"
+        "macos": "generic/platform=macOS,name=Any Mac",
+        "macos-catalyst": "generic/platform=macOS,variant=Mac Catalyst,name=Any Mac"
     }
 
     if "all" in args.platforms:

@@ -1,199 +1,191 @@
 name: Build and Release WCDB Apple XCFramework
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
 
 env:
-    WCDB_VERSION: v2.1.14
-    REPO_ROOT: ${{ github.workspace }}
-    WCDB_DIR: ${{ github.workspace }}/wcdb
-    PATCH_DIR: ${{ github.workspace }}/patches
-    BUILD_DIR: ${{ github.workspace }}/build
+  WCDB_VERSION: v2.1.14
+  REPO_ROOT: ${{ github.workspace }}
+  WCDB_DIR: ${{ github.workspace }}/wcdb
+  PATCH_DIR: ${{ github.workspace }}/patches
+  BUILD_DIR: ${{ github.workspace }}/build
 
 jobs:
-    build:
-        runs-on: macos-15
-        timeout-minutes: 120
+  build:
+    runs-on: macos-15
+    timeout-minutes: 120
 
-        steps:
-            - name: Checkout repository (build scripts)
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-            - name: Fetch tags
-              run: |
-                  git fetch --tags --prune
-                  STORAGE_RELEASE_TAG_COMMIT=$(git rev-parse HEAD)
-                  echo "STORAGE_RELEASE_TAG_COMMIT=$STORAGE_RELEASE_TAG_COMMIT" >> $GITHUB_ENV
-                  echo "[*] STORAGE_RELEASE_TAG_COMMIT=$STORAGE_RELEASE_TAG_COMMIT"
+      - name: Prepare env variables
+        run: |
+          echo "[*] git version: $(git --version)"
+          STORAGE_RELEASE_TAG_COMMIT=$(git rev-parse HEAD)
+          echo "STORAGE_RELEASE_TAG_COMMIT=$STORAGE_RELEASE_TAG_COMMIT" >> $GITHUB_ENV
+          echo "[*] STORAGE_RELEASE_TAG_COMMIT=$STORAGE_RELEASE_TAG_COMMIT"
 
-            - name: Prepare env variables
-              run: |
-                  RELEASE_TAG=$WCDB_VERSION
-                  STORAGE_RELEASE_TAG="storage.$RELEASE_TAG"
-                  echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
-                  echo "STORAGE_RELEASE_TAG=$STORAGE_RELEASE_TAG" >> $GITHUB_ENV
-                  echo "[*] RELEASE_TAG=$RELEASE_TAG"
-                  echo "[*] STORAGE_RELEASE_TAG=$STORAGE_RELEASE_TAG"
+          RELEASE_TAG=$WCDB_VERSION
+          STORAGE_RELEASE_TAG="storage.$RELEASE_TAG"
+          echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
+          echo "STORAGE_RELEASE_TAG=$STORAGE_RELEASE_TAG" >> $GITHUB_ENV
+          echo "[*] RELEASE_TAG=$RELEASE_TAG"
+          echo "[*] STORAGE_RELEASE_TAG=$STORAGE_RELEASE_TAG"
 
-            - name: Clean workspace
-              run: |
-                  rm -rf "$WCDB_DIR"
-                  rm -rf "$BUILD_DIR"
-                  mkdir -p "$BUILD_DIR"
+      - name: Clean workspace
+        run: |
+          rm -rf "$WCDB_DIR"
+          rm -rf "$BUILD_DIR"
+          mkdir -p "$BUILD_DIR"
 
-            - name: Set up Python
-              uses: actions/setup-python@v5
-              with:
-                  python-version: "3.11"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-            - name: Set Xcode version
-              run: |
-                  sudo xcode-select -s /Applications/Xcode_16.1.app
-                  xcodebuild -version
+      - name: Set Xcode version
+        run: |
+          sudo xcode-select -s /Applications/Xcode_16.4.app
+          xcodebuild -version
 
-            - name: Install xcbeautify
-              run: brew install xcbeautify
+      - name: Install xcbeautify
+        run: brew install xcbeautify
 
-            - name: Clone WCDB source
-              run: |
-                  echo "[*] Cloning WCDB $WCDB_VERSION"
-                  git clone --depth 1 --branch "$WCDB_VERSION" https://github.com/Tencent/wcdb.git "$WCDB_DIR"
-                  cd "$WCDB_DIR"
-                  git submodule update --init --recursive --depth 1
+      - name: Clone WCDB source
+        run: |
+          echo "[*] Cloning WCDB $WCDB_VERSION"
+          git clone --depth 1 --branch "$WCDB_VERSION" https://github.com/Tencent/wcdb.git "$WCDB_DIR"
+          cd "$WCDB_DIR"
+          git submodule update --init --recursive --depth 1
+          cp LICENSE $REPO_ROOT/WCDB-LICENSE
 
-            - name: Apply Patches
-              run: |
-                  set -e
-                  cd "$WCDB_DIR"
-                  git clean -fdx
-                  echo "[*] Applying patch for wcdb"
-                  git apply "$PATCH_DIR/wcdb_${WCDB_VERSION}.patch"
+      - name: Apply Patches
+        run: |
+          cd "$WCDB_DIR"
+          git clean -fdx
+          echo "[*] Applying patch for wcdb"
+          git apply "$PATCH_DIR/wcdb_${WCDB_VERSION}.patch"
 
-                  cd sqlcipher
-                  echo "[*] Applying patch for sqlcipher"
-                  git apply "$PATCH_DIR/sqlcipher_${WCDB_VERSION}.patch"
+          cd sqlcipher
+          echo "[*] Applying patch for sqlcipher"
+          git apply "$PATCH_DIR/sqlcipher_${WCDB_VERSION}.patch"
 
-            - name: Build WCDBSwift XCFramework
-              run: |
-                  python3 $REPO_ROOT/build_apple_wcdb.py \
-                    --project $WCDB_DIR/src/WCDB.xcodeproj \
-                    --scheme WCDBSwift \
-                    --platform all \
-                    --output $BUILD_DIR \
-                    --xcbeautify
+      - name: Build XCFramework
+        run: |
+          python3 $REPO_ROOT/build_apple_wcdb.py \
+            --project $WCDB_DIR/src/WCDB.xcodeproj \
+            --scheme WCDBSwift \
+            --platform all \
+            --output $BUILD_DIR \
+            --xcbeautify
 
-            - name: Build WCDBObjc XCFramework
-              run: |
-                  python3 $REPO_ROOT/build_apple_wcdb.py \
-                    --project $WCDB_DIR/src/WCDB.xcodeproj \
-                    --scheme WCDBObjc \
-                    --platform all \
-                    --output $BUILD_DIR \
-                    --xcbeautify
+          python3 $REPO_ROOT/build_apple_wcdb.py \
+            --project $WCDB_DIR/src/WCDB.xcodeproj \
+            --scheme WCDBObjc \
+            --platform all \
+            --output $BUILD_DIR \
+            --xcbeautify
 
-            - name: Zip XCFramework
-              run: |
-                  cd "$BUILD_DIR/xcframeworks"
-                  zip -r9 WCDBSwift.xcframework.zip WCDBSwift.xcframework
-                  zip -r9 WCDBObjc.xcframework.zip WCDBObjc.xcframework
+      - name: Zip XCFramework
+        run: |
+          cd "$BUILD_DIR/xcframeworks"
 
-            - name: Remove Storage Release
-              run: |
-                  if git rev-parse "refs/tags/${{ env.STORAGE_RELEASE_TAG }}" >/dev/null 2>&1; then
-                      echo "Tag ${{ env.STORAGE_RELEASE_TAG }} exists, deleting..."
-                      git tag -d ${{ env.STORAGE_RELEASE_TAG }}
-                      git push origin :refs/tags/${{ env.STORAGE_RELEASE_TAG }}
-                  fi
+          cp $REPO_ROOT/WCDB-LICENSE WCDBSwift.xcframework/LICENSE
+          cp $REPO_ROOT/WCDB-LICENSE WCDBObjc.xcframework/LICENSE
 
-            - name: Publish Storage Release
-              uses: softprops/action-gh-release@v2
-              with:
-                  target_commitish: ${{ env.STORAGE_RELEASE_TAG_COMMIT }}
-                  tag_name: ${{ env.STORAGE_RELEASE_TAG }}
-                  draft: false
-                  prerelease: false
-                  files: |
-                      ${{ env.BUILD_DIR }}/xcframeworks/WCDBSwift.xcframework.zip
-                      ${{ env.BUILD_DIR }}/xcframeworks/WCDBObjc.xcframework.zip
-                  body: |
-                      ## Prebuilt WCDB binary for SPM.
-                      ✅ Automatic Swift Package build  
-                      🔗 WCDB Version: ${{ env.WCDB_VERSION }}
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ditto -c -k --keepParent WCDBSwift.xcframework WCDBSwift.xcframework.zip
+          ditto -c -k --keepParent WCDBObjc.xcframework WCDBObjc.xcframework.zip
 
-            - name: Build Package.swift (SPM manifest)
-              run: |
-                  cd $REPO_ROOT
+      - name: Remove Storage Release
+        run: |
+          git push origin --delete tag ${{ env.STORAGE_RELEASE_TAG }}
 
-                  WCDBSwift_DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/$STORAGE_RELEASE_TAG/WCDBSwift.xcframework.zip"
-                  WCDBSwift_CHECKSUM=$(shasum -a 256 "$BUILD_DIR/xcframeworks/WCDBSwift.xcframework.zip" | awk '{print $1}')
+      - name: Publish Storage Release
+        uses: softprops/action-gh-release@v2
+        with:
+          target_commitish: ${{ env.STORAGE_RELEASE_TAG_COMMIT }}
+          tag_name: ${{ env.STORAGE_RELEASE_TAG }}
+          draft: false
+          prerelease: false
+          files: |
+            ${{ env.BUILD_DIR }}/xcframeworks/WCDBSwift.xcframework.zip
+            ${{ env.BUILD_DIR }}/xcframeworks/WCDBObjc.xcframework.zip
+          body: |
+            ## Prebuilt WCDB binary for SPM.
+            ✅ Automatic Swift Package build  
+            🔗 WCDB Version: ${{ env.WCDB_VERSION }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-                  WCDBObjc_DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/$STORAGE_RELEASE_TAG/WCDBObjc.xcframework.zip"
-                  WCDBObjc_CHECKSUM=$(shasum -a 256 "$BUILD_DIR/xcframeworks/WCDBObjc.xcframework.zip" | awk '{print $1}')
+      - name: Build Package.swift (SPM manifest)
+        run: |
+          cd $REPO_ROOT
 
-                  echo "[*] WCDBSwift_DOWNLOAD_URL: $WCDBSwift_DOWNLOAD_URL"
-                  echo "[*] WCDBSwift_CHECKSUM: $WCDBSwift_CHECKSUM"
-                  echo "[*] WCDBObjc_DOWNLOAD_URL: $WCDBObjc_DOWNLOAD_URL"
-                  echo "[*] WCDBObjc_CHECKSUM: $WCDBObjc_CHECKSUM"
+          WCDBSwift_DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/$STORAGE_RELEASE_TAG/WCDBSwift.xcframework.zip"
+          WCDBSwift_CHECKSUM=$(shasum -a 256 "$BUILD_DIR/xcframeworks/WCDBSwift.xcframework.zip" | awk '{print $1}')
 
-                  sed -e "s|__WCDBSwift_DOWNLOAD_URL__|$WCDBSwift_DOWNLOAD_URL|g" \
-                      -e "s|__WCDBSwift_CHECKSUM__|$WCDBSwift_CHECKSUM|g" \
-                      -e "s|__WCDBObjc_DOWNLOAD_URL__|$WCDBObjc_DOWNLOAD_URL|g" \
-                      -e "s|__WCDBObjc_CHECKSUM__|$WCDBObjc_CHECKSUM|g" \
-                      Package.swift.template > Package.swift
+          WCDBObjc_DOWNLOAD_URL="https://github.com/${{ github.repository }}/releases/download/$STORAGE_RELEASE_TAG/WCDBObjc.xcframework.zip"
+          WCDBObjc_CHECKSUM=$(shasum -a 256 "$BUILD_DIR/xcframeworks/WCDBObjc.xcframework.zip" | awk '{print $1}')
 
-                  cat Package.swift
+          echo "[*] WCDBSwift_DOWNLOAD_URL: $WCDBSwift_DOWNLOAD_URL"
+          echo "[*] WCDBSwift_CHECKSUM: $WCDBSwift_CHECKSUM"
+          echo "[*] WCDBObjc_DOWNLOAD_URL: $WCDBObjc_DOWNLOAD_URL"
+          echo "[*] WCDBObjc_CHECKSUM: $WCDBObjc_CHECKSUM"
 
-            - name: Validate SwiftPM package
-              run: swift package resolve --package-path $REPO_ROOT
+          sed -e "s|__WCDBSwift_DOWNLOAD_URL__|$WCDBSwift_DOWNLOAD_URL|g" \
+              -e "s|__WCDBSwift_CHECKSUM__|$WCDBSwift_CHECKSUM|g" \
+              -e "s|__WCDBObjc_DOWNLOAD_URL__|$WCDBObjc_DOWNLOAD_URL|g" \
+              -e "s|__WCDBObjc_CHECKSUM__|$WCDBObjc_CHECKSUM|g" \
+              Package.swift.template > Package.swift
 
-            # - name: Commit & Push changes
-            #   run: |
-            #       git config user.name "github-actions"
-            #       git config user.email "github-actions@github.com"
-            #       git add Package.swift
-            #       git commit -m "Update Package.swift for ${{ env.WCDB_VERSION }}" || echo "Nothing to commit"
-            #       git push origin HEAD:master
+          cat Package.swift
 
-            - name: Commit & Push changes
-              uses: actions-js/push@master
-              with:
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  tags: false
-                  branch: master
-                  message: "Update Package.swift for ${{ env.WCDB_VERSION }}"
+      - name: Validate SwiftPM package
+        run: swift package resolve --package-path $REPO_ROOT
 
-            - name: Remove Final Release
-              run: |
-                  if git rev-parse "refs/tags/${{ env.RELEASE_TAG }}" >/dev/null 2>&1; then
-                      echo "Tag ${{ env.RELEASE_TAG }} exists, deleting..."
-                      git tag -d ${{ env.RELEASE_TAG }}
-                      git push origin :refs/tags/${{ env.RELEASE_TAG }}
-                  fi
+      # - name: Commit & Push changes
+      #   run: |
+      #       git config user.name "github-actions"
+      #       git config user.email "github-actions@github.com"
+      #       git add Package.swift
+      #       git commit -m "Update Package.swift for ${{ env.WCDB_VERSION }}" || echo "Nothing to commit"
+      #       git push origin HEAD:master
 
-            - name: Pull master
-              run: |
-                  git fetch origin master
-                  git checkout master
-                  git pull origin master
-                  RELEASE_TAG_COMMIT=$(git rev-parse HEAD)
-                  echo "RELEASE_TAG_COMMIT=$RELEASE_TAG_COMMIT" >> $GITHUB_ENV
-                  echo "[*] RELEASE_TAG_COMMIT=$RELEASE_TAG_COMMIT"
+      - name: Commit & Push changes
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          tags: false
+          branch: master
+          message: "Update Package.swift for ${{ env.WCDB_VERSION }}"
 
-            - name: Create Final Release
-              uses: softprops/action-gh-release@v2
-              with:
-                  target_commitish: ${{ env.RELEASE_TAG_COMMIT }}
-                  tag_name: ${{ env.RELEASE_TAG }}
-                  draft: false
-                  prerelease: false
-                  body: |
-                      ## WCDB Apple Package
-                      ✅ Automatic Swift Package build  
-                      🔗 WCDB Version: ${{ env.WCDB_VERSION }}  
-                      🧾 Package.swift updated automatically  
+      - name: Remove Final Release
+        run: |
+          git push origin --delete tag ${{ env.RELEASE_TAG }}
 
-                      Includes prebuilt binary for SPM.
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull master
+        run: |
+          git fetch origin master
+          git checkout master
+          git pull origin master
+          RELEASE_TAG_COMMIT=$(git rev-parse HEAD)
+          echo "RELEASE_TAG_COMMIT=$RELEASE_TAG_COMMIT" >> $GITHUB_ENV
+          echo "[*] RELEASE_TAG_COMMIT=$RELEASE_TAG_COMMIT"
+
+      - name: Create Final Release
+        uses: softprops/action-gh-release@v2
+        with:
+          target_commitish: ${{ env.RELEASE_TAG_COMMIT }}
+          tag_name: ${{ env.RELEASE_TAG }}
+          draft: false
+          prerelease: false
+          body: |
+            ## WCDB Apple Package
+            ✅ Automatic Swift Package build  
+            🔗 WCDB Version: ${{ env.WCDB_VERSION }}  
+            🧾 Package.swift updated automatically  
+
+            Includes prebuilt binary for SPM.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "WCDB",
+    name: "wcdb-spm-prebuilt",
      platforms: [
         .macOS(.v10_13),
         // .watchOS(.v4),
