@@ -1,0 +1,23 @@
+diff --git a/sqlcipher.preprocessed.xcodeproj/project.pbxproj b/sqlcipher.preprocessed.xcodeproj/project.pbxproj
+index 1ee9d83..337b6ba 100644
+--- a/sqlcipher.preprocessed.xcodeproj/project.pbxproj
++++ b/sqlcipher.preprocessed.xcodeproj/project.pbxproj
+@@ -733,12 +733,18 @@
+ 		23F5BC3E20887FAB000CCD37 /* Debug */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = 2;
+ 			};
+ 			name = Debug;
+ 		};
+ 		23F5BC3F20887FAB000CCD37 /* Release */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = 2;
+ 			};
+ 			name = Release;
+ 		};

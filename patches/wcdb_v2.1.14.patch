@@ -1,0 +1,228 @@
+diff --git a/src/WCDB.xcodeproj/project.pbxproj b/src/WCDB.xcodeproj/project.pbxproj
+index f7e33d9..6b4146a 100644
+--- a/src/WCDB.xcodeproj/project.pbxproj
++++ b/src/WCDB.xcodeproj/project.pbxproj
+@@ -3,7 +3,7 @@
+ 	archiveVersion = 1;
+ 	classes = {
+ 	};
+-	objectVersion = 54;
++	objectVersion = 55;
+ 	objects = {
+ 
+ /* Begin PBXBuildFile section */
+@@ -1634,6 +1634,10 @@
+ 		39B524DE2304F9A2001DF52D /* InnerHandle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39B524DC2304F9A2001DF52D /* InnerHandle.cpp */; };
+ 		39C70CC72313E20F002D773C /* Assemble.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 39C70CC52313E20E002D773C /* Assemble.cpp */; };
+ 		39C70CC82313E20F002D773C /* Assemble.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 39C70CC62313E20F002D773C /* Assemble.hpp */; };
++		3C9073EB2EB2FDA50090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
++		3C9073EC2EB2FDAF0090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
++		3C9073ED2EB2FDB80090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
++		3C9073EE2EB2FDC00090488A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C9073EA2EB2FDA50090488A /* UIKit.framework */; platformFilters = (ios, maccatalyst, tvos, watchos, ); };
+ 		750080D92920DCFF009C0F38 /* WCTFileManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2316D93521058B5500707AFC /* WCTFileManager.mm */; };
+ 		750080DA2920DD1B009C0F38 /* WCTOperationQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 232C6F00229C0A280046742F /* WCTOperationQueue.mm */; };
+ 		750080E22920E4A1009C0F38 /* WCTFTSTokenizerUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23577F781F74F4E800D31C05 /* WCTFTSTokenizerUtil.mm */; };
+@@ -4785,6 +4789,7 @@
+ 		39B524DC2304F9A2001DF52D /* InnerHandle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InnerHandle.cpp; sourceTree = "<group>"; };
+ 		39C70CC52313E20E002D773C /* Assemble.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Assemble.cpp; sourceTree = "<group>"; };
+ 		39C70CC62313E20F002D773C /* Assemble.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Assemble.hpp; sourceTree = "<group>"; };
++		3C9073EA2EB2FDA50090488A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/iOSSupport/System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+ 		7500829229223463009C0F38 /* WCTBridgeMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTBridgeMacro.h; sourceTree = "<group>"; };
+ 		75067CBD293F8192005DA25B /* AutoAddColumnObject.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AutoAddColumnObject.mm; sourceTree = "<group>"; };
+ 		75067CBF293F819B005DA25B /* AutoAddColumnObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoAddColumnObject.h; sourceTree = "<group>"; };
+@@ -5130,6 +5135,7 @@
+ 				037C3A822897E33600328EC8 /* Foundation.framework in Frameworks */,
+ 				037C3A832897E33600328EC8 /* libz.tbd in Frameworks */,
+ 				037C3A842897E33600328EC8 /* sqlcipher.framework in Frameworks */,
++				3C9073EC2EB2FDAF0090488A /* UIKit.framework in Frameworks */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+@@ -5173,6 +5179,7 @@
+ 				2366BB21221BC0D2000ED712 /* Foundation.framework in Frameworks */,
+ 				23F5BE132088800C000CCD37 /* libz.tbd in Frameworks */,
+ 				23F5BE1120888008000CCD37 /* sqlcipher.framework in Frameworks */,
++				3C9073EE2EB2FDC00090488A /* UIKit.framework in Frameworks */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+@@ -5191,6 +5198,7 @@
+ 				7521D88F291E9ABB009642EF /* Foundation.framework in Frameworks */,
+ 				7521D890291E9ABB009642EF /* libz.tbd in Frameworks */,
+ 				7521D891291E9ABB009642EF /* sqlcipher.framework in Frameworks */,
++				3C9073ED2EB2FDB80090488A /* UIKit.framework in Frameworks */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+@@ -5202,6 +5210,7 @@
+ 				7521DC25291EA349009642EF /* Foundation.framework in Frameworks */,
+ 				7521DC26291EA349009642EF /* libz.tbd in Frameworks */,
+ 				7521DC27291EA349009642EF /* sqlcipher.framework in Frameworks */,
++				3C9073EB2EB2FDA50090488A /* UIKit.framework in Frameworks */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+ 		};
+@@ -7124,6 +7133,7 @@
+ 		23B5F93E1E111CB100E58396 /* Frameworks */ = {
+ 			isa = PBXGroup;
+ 			children = (
++				3C9073EA2EB2FDA50090488A /* UIKit.framework */,
+ 				2387D8A621DF0B190028ADB9 /* XCTest.framework */,
+ 				239E8A922160A81600BCB308 /* Foundation.framework */,
+ 				23F0FD7C215F1C92008399FB /* Security.framework */,
+@@ -12005,6 +12015,13 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Debug;
+ 		};
+@@ -12012,6 +12029,13 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Release;
+ 		};
+@@ -12093,6 +12117,10 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
+ 				GCC_PREPROCESSOR_DEFINITIONS = (
+ 					"$(inherited)",
+ 					"$(WCDB_VERSION_DEFINITIONS)",
+@@ -12103,7 +12131,10 @@
+ 					"WCDB_TESTS=1",
+ 				);
+ 				MODULEMAP_FILE = "$(SRCROOT)/support/WCDB.modulemap";
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
+ 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "WCDB_SWIFT_BRIDGE_OBJC WCDB_QUICK_TESTS";
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Debug;
+ 		};
+@@ -12111,6 +12142,10 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
+ 				GCC_PREPROCESSOR_DEFINITIONS = (
+ 					"$(inherited)",
+ 					"$(WCDB_VERSION_DEFINITIONS)",
+@@ -12120,7 +12155,10 @@
+ 					"WCDB_SWIFT_BRIDGE_OBJC=1",
+ 				);
+ 				MODULEMAP_FILE = "$(SRCROOT)/support/WCDB.modulemap";
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
+ 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = WCDB_SWIFT_BRIDGE_OBJC;
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Release;
+ 		};
+@@ -12182,7 +12220,14 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
+ 				MODULEMAP_FILE = "$(SRCROOT)/support/WCDBObjc.modulemap";
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Debug;
+ 		};
+@@ -12190,7 +12235,14 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
+ 				MODULEMAP_FILE = "$(SRCROOT)/support/WCDBObjc.modulemap";
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Release;
+ 		};
+@@ -12198,7 +12250,14 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
+ 				MODULEMAP_FILE = "$(SRCROOT)/support/WCDBSwift.modulemap";
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Debug;
+ 		};
+@@ -12206,7 +12265,14 @@
+ 			isa = XCBuildConfiguration;
+ 			baseConfigurationReference = 0DACF8B22B2ADC7700CB0710 /* WCDB.xcconfig */;
+ 			buildSettings = {
++				FRAMEWORK_SEARCH_PATHS = (
++					"$(inherited)",
++					"$(SDKROOT)/System/iOSSupport/System/Library/Frameworks",
++				);
+ 				MODULEMAP_FILE = "$(SRCROOT)/support/WCDBSwift.modulemap";
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
++				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+ 			};
+ 			name = Release;
+ 		};
+diff --git a/src/zstd.xcodeproj/project.pbxproj b/src/zstd.xcodeproj/project.pbxproj
+index f25c637..ca4be13 100644
+--- a/src/zstd.xcodeproj/project.pbxproj
++++ b/src/zstd.xcodeproj/project.pbxproj
+@@ -494,7 +494,8 @@
+ 				);
+ 				PROVISIONING_PROFILE_SPECIFIER = "";
+ 				SKIP_INSTALL = YES;
+-				SUPPORTS_MACCATALYST = NO;
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
+ 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+ 				SWIFT_EMIT_LOC_STRINGS = YES;
+ 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+@@ -521,7 +522,8 @@
+ 				);
+ 				PROVISIONING_PROFILE_SPECIFIER = "";
+ 				SKIP_INSTALL = YES;
+-				SUPPORTS_MACCATALYST = NO;
++				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx watchos watchsimulator";
++				SUPPORTS_MACCATALYST = YES;
+ 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+ 				SWIFT_EMIT_LOC_STRINGS = YES;
+ 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
